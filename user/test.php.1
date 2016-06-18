@@ -1,0 +1,46 @@
+<?php
+$servername = "localhost";
+$username   = "user_dd_admin";
+$password   = "Password1";
+$dbname     = "dd_user";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // prepare sql and bind parameters
+    $stmt = $conn->prepare("INSERT INTO allUsers (user_name ,user_email, password,joinDate) VALUES (:uname, :uemail,:pwd, :jdate)");
+    $stmt->bindParam(':uname', $user_name);
+    $stmt->bindParam(':uemail', $user_email);
+    $stmt->bindParam(':pwd', $user_pwd);
+    $stmt->bindParam(':jdate', $joining_date);
+    // insert a row
+    $user_name = "John1";
+    $user_email = "john@example.com";
+    $user_pwd = '123456';
+    $joining_date =date('Y-m-d H:i:s');
+    $stmt->execute();
+
+    // insert another row
+    $user_name = "Mary1";
+    $user_email = "mary@example.com";
+    $joining_date =date('Y-m-d H:i:s');
+    $user_pwd = '123456';
+    $stmt->execute();
+
+    // insert another row
+    $user_name = "Julie1";
+    $user_email = "julie@example.com";
+    $user_pwd = '123456';
+    $joining_date =date('Y-m-d H:i:s');
+    $stmt->execute();
+
+    echo "New records created successfully";
+}
+catch(PDOException $e)
+    {
+    	echo "Error: " . $e->getMessage();
+    }
+	$conn = null;
+?>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function validateForm(){
+  var uname = document.getElementById('username').value;
+  var letters = /^[A-Za-z]+$/;
+  //alert('get here');
+  if(uname.match(letters)){
+  	alert('get here');
+    return true;
+  }
+  else
+  {
+    alert('First/Last name must be alphabet characters only');
+    uname.focus();
+    return false; 
+  }
+}
+
+
+
+</script>
+</head>
+<body>
+
+<form name="myForm" action="demo_form.asp" onsubmit="return validateForm()" method="post">
+Name: <input type="text" name="fname" id="username">
+<input type="submit" value="Submit" required>
+</form>
+
+</body>
+</html>
+
